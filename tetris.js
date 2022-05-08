@@ -596,7 +596,6 @@ function startNewGame() {
     startNewGame();
   }
 
-
   async function gameOver() {    
     
     if (
@@ -614,14 +613,14 @@ function startNewGame() {
       if (liveCounter > 0){
         gameInit()
       }else{
-        const name = prompt('Enter your name for see scoreboard', 'player')
+        //const name = prompt('Enter your name for see scoreboard', 'player')
         let spanLives = document.getElementById('lives')
         spanLives.innerHTML = liveCounter
         scoreDisplay.innerHTML = "Game over with score - " + score;
         let t = document.getElementById('timer')
         //sendScore(name,score,t.innerHTML)
         //let scores = await getScores()
-        /*let scores = await*/ sendScore(name,score,t.innerHTML)
+        /*let scores = await*/ //sendScore(name,score,t.innerHTML)
         //showScores(scores)
         //console.log(scores)
         
@@ -633,6 +632,13 @@ function startNewGame() {
             i++
           }
         },200)
+
+        const button = document.createElement('button')
+        button.innerHTML="Restart game"
+        button.addEventListener('click', () => window.location.reload())
+        infoArea.appendChild(button)
+        let btn = document.getElementById('start_btn')
+        btn.remove()
 
         //sleep(5000)
         //showScores(scores)
@@ -671,13 +677,13 @@ function sleep(milliseconds) {
     currentDate = Date.now();
   } while (currentDate - date < milliseconds);
 }
-async function getScores(){
+/*async function getScores(){
   let resp = await fetch('/scores').then((res)=>res.json())
   console.log(resp)
   return resp
 
-}
-async function sendScore(name,score,time){
+}*/
+/*async function sendScore(name,score,time){
   await fetch("/scores", {
     method: "POST",
     headers: {'Content-Type': 'application/json'},
@@ -688,8 +694,8 @@ async function sendScore(name,score,time){
   //.then((r)=>console.log(r))
   
   //.then((r)=>showScores(r))
-}
-function showScores(response){
+}*/
+/*function showScores(response){
     sleep(1000)
       let info = document.getElementById('infoArea')
       while (info.hasChildNodes()) {
@@ -753,7 +759,7 @@ function showScores(response){
       button.innerHTML="Restart game"
       button.addEventListener('click', () => window.location.reload())
       info.appendChild(button)
-}
+}*/
         
 /*async function wave(){
   grid = document.querySelectorAll('#cell')
